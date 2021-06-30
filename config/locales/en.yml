@@ -31,3 +31,5 @@
 
 en:
   hello: "Hello world"
+  successfully_created: "Poll was successfully created!"
+

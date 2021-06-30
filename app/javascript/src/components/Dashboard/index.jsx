@@ -38,26 +38,36 @@ const Dashboard = ({ history }) => {
   if (!either(isNil, isEmpty)(polls)) {
     return (
       <Container>
-        <div className="flex justify-center">
-          <div className="w-3/4 px-4">
-            <div className="flex justify-between">
-              <h2 className="text-3xl font-extrabold text-indigo-500">Polls</h2>
-              <Button
-                type="create"
-                buttonText="Create a poll +"
-                loading={loading}
-              />
-            </div>
-            <ListPolls data={polls} />
-          </div>
+        <div className="flex justify-between">
+          <h2 className="text-3xl font-extrabold text-indigo-500">Polls</h2>
+          <Button
+            type="link"
+            path={`/polls/new`}
+            buttonText="Create a poll"
+            iconClass="ri-add-line"
+            loading={loading}
+          />
         </div>
+        <ListPolls data={polls} />
       </Container>
     );
   }
 
   return (
     <Container>
-      <h1 className="text-xl leading-5 text-center">No polls available😔</h1>
+      <div className="flex justify-between">
+        <h2 className="text-3xl font-extrabold text-indigo-500">Polls</h2>
+        <Button
+          type="link"
+          path={`/polls/new`}
+          buttonText="Create a poll"
+          iconClass="ri-add-line"
+          loading={loading}
+        />
+      </div>
+      <div className="flex">
+        <h1 className="leading-5 text-grey-800">No Polls available 😔</h1>
+      </div>
     </Container>
   );
 };
