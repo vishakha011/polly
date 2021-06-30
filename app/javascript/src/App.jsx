@@ -8,6 +8,7 @@ import { initializeLogger } from "common/logger";
 import Dashboard from "components/Dashboard";
 import CreatePoll from "components/Polls/CreatePoll";
 import ShowPoll from "components/Polls/ShowPoll";
+import EditPoll from "components/Polls/EditPoll";
 import PageLoader from "components/PageLoader";
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/polls/new" component={CreatePoll}></Route>
         <Route exact path="/polls/:id/show" component={ShowPoll} />
+        <Route exact path="/polls/:id/edit" component={EditPoll} />
       </Switch>
     </Router>
   );

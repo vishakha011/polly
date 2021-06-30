@@ -27,6 +27,19 @@ const Dashboard = ({ history }) => {
     history.push(`/polls/${id}/show`);
   };
 
+  const updatePoll = id => {
+    history.push(`/polls/${id}/edit`);
+  };
+
+  const destroyPoll = async id => {
+    try {
+      await pollsApi.destroy(id);
+      await fetchPolls();
+    } catch (error) {
+      logger.error(error);
+    }
+  };
+
   useEffect(() => {
     fetchPolls();
   }, []);
@@ -52,7 +65,12 @@ const Dashboard = ({ history }) => {
             loading={loading}
           />
         </div>
-        <ListPolls data={polls} showPoll={showPoll} />
+        <ListPolls
+          data={polls}
+          showPoll={showPoll}
+          updatePoll={updatePoll}
+          destroyPoll={destroyPoll}
+        />
       </Container>
     );
   }

@@ -29,7 +29,7 @@ const PollForm = ({
           onChange={e => setTitle(e.target.value)}
         />
       </div>
-      <div className="w-3/4">
+      {/* <div className="w-3/4">
         <Input
           label="Option 1"
           placeholder="Option 1"
@@ -60,7 +60,7 @@ const PollForm = ({
           value={options[3].option}
           onChange={e => handleSetOptions(e, 3)}
         />
-      </div>
+      </div> */}
 
       <div className="flex justify-center">
         <Button
