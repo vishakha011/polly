@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_action :load_poll, only: %i[show update]
+  before_action :load_poll, only: %i[show update destroy]
 
   def index
     polls = Poll.all
@@ -26,6 +26,14 @@ class PollsController < ApplicationController
     else
       errors = @poll.errors.full_messages
       render status: :unprocessable_entity, json: { errors: errors }
+    end
+  end
+
+  def destroy
+    if @poll.destroy
+      render status: :ok, json: { notice: "Successfully deleted poll."}
+    else
+      render status: :unprocessable_entity, json: { errors: @poll.errors.full_messages }
     end
   end
 

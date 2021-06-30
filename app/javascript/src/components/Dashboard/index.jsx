@@ -5,7 +5,7 @@ import Container from "components/Container";
 import Button from "components/Button";
 import ListPolls from "components/Polls/ListPolls";
 import PageLoader from "components/PageLoader";
-import PollsApi from "apis/polls";
+import pollsApi from "apis/polls";
 
 const Dashboard = ({ history }) => {
   const [polls, setPolls] = useState([]);
@@ -13,7 +13,7 @@ const Dashboard = ({ history }) => {
 
   const fetchPolls = async () => {
     try {
-      const response = await PollsApi.list();
+      const response = await pollsApi.list();
       // logger.info(response);
       setPolls(response.data.polls);
       setLoading(false);
