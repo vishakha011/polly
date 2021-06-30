@@ -1,14 +1,31 @@
 import React from "react";
-import Table from "./Table";
+import Button from "components/Button";
 
-const ListPolls = ({ data }) => {
-  // return <Table data={ data }/>
+const ListPolls = ({ data, showPoll }) => {
   return (
     <>
-      <h1>List of Polls</h1>
-      {data.map(poll => (
-        <li key={poll.id}>{poll.title}</li>
-      ))}
+      <div className="table w-full">
+        <div className="table-row-group">
+          {data.map(poll => (
+            <div className="table-row py-2" key={poll.id}>
+              <div
+                className="table-cell text-lg font-medium cursor-pointer hover:text-indigo-500"
+                onClick={() => showPoll(poll.id)}
+              >
+                {poll.title}
+              </div>
+              <div>
+                <div className="table-cell">
+                  <Button buttonText="Edit" />
+                </div>
+                <div className="table-cell pl-2">
+                  <Button buttonText="Delete" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   );
 };

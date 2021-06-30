@@ -14,13 +14,17 @@ const Dashboard = ({ history }) => {
   const fetchPolls = async () => {
     try {
       const response = await PollsApi.list();
-      logger.info(response);
+      // logger.info(response);
       setPolls(response.data.polls);
       setLoading(false);
     } catch (error) {
       logger.error(error);
       setLoading(false);
     }
+  };
+
+  const showPoll = id => {
+    history.push(`/polls/${id}/show`);
   };
 
   useEffect(() => {
@@ -48,7 +52,7 @@ const Dashboard = ({ history }) => {
             loading={loading}
           />
         </div>
-        <ListPolls data={polls} />
+        <ListPolls data={polls} showPoll={showPoll} />
       </Container>
     );
   }
