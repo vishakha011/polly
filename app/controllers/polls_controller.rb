@@ -9,6 +9,7 @@ class PollsController < ApplicationController
 
   def create
     @poll = Poll.new(poll_params);
+    authorize @poll
     if @poll.save
       render status: :ok, json: { notice: t('successfully_created', entity: 'Poll') }
     else
@@ -31,6 +32,7 @@ class PollsController < ApplicationController
   end
 
   def destroy
+    authorize @poll
     if @poll.destroy
       render status: :ok, json: { notice: "Successfully deleted poll."}
     else
