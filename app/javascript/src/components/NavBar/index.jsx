@@ -1,13 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { either, isNil, isEmpty } from "ramda";
 
 import NavItem from "./NavItem";
 import authApi from "apis/auth";
 import { resetAuthTokens } from "src/apis/axios.js";
-import { getFromLocalStorage } from "helpers/storage";
+import { getFromLocalStorage, setToLocalStorage } from "helpers/storage";
 
 const NavBar = () => {
   const userFirstName = getFromLocalStorage("authUserFirstName");
   logger.info(userFirstName);
+  logger.info(
+    !either(isNil, isEmpty)(userFirstName) && userFirstName !== "null"
+  );
+
+  const handleLogout = async () => {
+    try {
+      await authApi.logout();
+      setToLocalStorage({
+        authToken: null,
+        email: null,
+        userId: null,
+        userFirstName: null,
+      });
+      resetAuthTokens();
+      window.location.href = "/";
+    } catch (error) {
+      logger.error(error);
+    }
+  };
 
   return (
     <>
@@ -18,15 +39,30 @@ const NavBar = () => {
               <NavItem name="Polly" path="/" />
             </div>
             <div>
-              <span
-                className="inline-flex items-center px-1 mr-3 font-semibold text-lg leading-5"
-                href="/"
-              >
-                {userFirstName}
-              </span>
-              {/* <a className="inline-flex items-center px-1 mr-3 font-semibold text-lg leading-5 cursor-pointer">
-              Logout
-            </a> */}
+              {!either(isNil, isEmpty)(userFirstName) &&
+              userFirstName !== "null" ? (
+                  <>
+                    <span
+                      className="inline-flex items-center px-1 mr-3 font-semibold text-lg leading-5"
+                      href="/"
+                    >
+                      {userFirstName}
+                    </span>
+                    <a
+                      className="inline-flex items-center px-1 mr-3 font-semibold text-lg leading-5 cursor-pointer"
+                      onClick={handleLogout}
+                    >
+                    Logout
+                    </a>
+                  </>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="inline-flex items-center px-1 mr-3 font-semibold text-lg leading-5 cursor-pointer"
+                  >
+                  Login
+                  </Link>
+                )}
             </div>
           </div>
         </div>
