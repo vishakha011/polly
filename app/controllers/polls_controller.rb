@@ -41,7 +41,7 @@ class PollsController < ApplicationController
   private
 
     def poll_params
-      params.require(:poll).permit(:title)
+      params.require(:poll).permit(:title, :user_id)
     end
 
     def load_poll
