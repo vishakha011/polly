@@ -32,9 +32,13 @@ const ShowPoll = () => {
 
   return (
     <Container>
-      <h1 className="pb-3 pl-3 mt-3 mb-3 text-lg leading-5 text-bb-gray border-b border-bb-gray">
-        <span>Poll Title : </span> {pollDetails?.title}
-      </h1>
+      <div className="flex justify-center">
+        <div className="w-3/4 px-4">
+          <h1 className="pb-3 pl-3 mt-3 mb-3 text-lg leading-5 text-bb-gray border-b border-bb-gray">
+            <span>Poll Title : </span> {pollDetails?.title}
+          </h1>
+        </div>
+      </div>
     </Container>
   );
 };

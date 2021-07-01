@@ -10,7 +10,7 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new(poll_params);
     if @poll.save
-      render status: :ok, json: { notice: t('successfully_created') }
+      render status: :ok, json: { notice: t('successfully_created', entity: 'Poll') }
     else
       errors = @poll.errors.full_messages
       render status: :unprocessable_entity, json: { errors: errors}
@@ -32,7 +32,7 @@ class PollsController < ApplicationController
 
   def destroy
     if @poll.destroy
-      render status: :ok, json: { notice: t('successfully created', entity: 'Poll')}
+      render status: :ok, json: { notice: "Successfully deleted poll."}
     else
       render status: :unprocessable_entity, json: { errors: @poll.errors.full_messages }
     end

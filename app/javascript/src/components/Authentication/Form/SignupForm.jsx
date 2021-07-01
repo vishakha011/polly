@@ -50,7 +50,9 @@ const SignupForm = ({
             placeholder="********"
             onChange={e => setPasswordConfirmation(e.target.value)}
           />
-          <Button type="submit" buttonText="Register" loading={loading} />
+          <div className="flex justify-center">
+            <Button type="submit" buttonText="Submit" loading={loading} />
+          </div>
         </form>
         <div className="flex justify-center items-center mt-2">
           <span className="text-xs">Already have an account?</span>
