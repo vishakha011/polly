@@ -18,10 +18,11 @@ const EditTask = ({ history }) => {
     try {
       await pollsApi.update({
         id,
-        payload: { poll: { title } },
+        payload: { poll: { title, user_id: userId } },
       });
       setLoading(false);
-      history.push("/dashboard");
+      Toastr.success("Successfully updated poll.");
+      history.push("/");
     } catch (error) {
       setLoading(false);
       logger.error(error);

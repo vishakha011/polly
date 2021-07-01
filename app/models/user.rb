@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :polls, dependent: :destroy, foreign_key: :user_id
   has_secure_password
+  has_secure_token :authentication_token
 
   validates :first_name, presence: true, length: {maximum: 35}
   validates :email, presence: true,

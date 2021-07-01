@@ -25,7 +25,7 @@ const Signup = ({ history }) => {
         },
       });
       setLoading(false);
-      history.push("/");
+      history.push("/login");
     } catch (error) {
       setLoading(false);
       logger.error(error);
