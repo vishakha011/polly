@@ -31,7 +31,7 @@ class PollsController < ApplicationController
 
   def destroy
     if @poll.destroy
-      render status: :ok, json: { notice: "Successfully deleted poll."}
+      render status: :ok, json: { notice: t('successfully created', entity: 'Poll')}
     else
       render status: :unprocessable_entity, json: { errors: @poll.errors.full_messages }
     end

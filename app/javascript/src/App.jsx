@@ -10,6 +10,7 @@ import CreatePoll from "components/Polls/CreatePoll";
 import ShowPoll from "components/Polls/ShowPoll";
 import EditPoll from "components/Polls/EditPoll";
 import PageLoader from "components/PageLoader";
+import Signup from "components/Authentication/Signup";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -39,6 +40,7 @@ const App = () => {
         <Route exact path="/polls/new" component={CreatePoll}></Route>
         <Route exact path="/polls/:id/show" component={ShowPoll} />
         <Route exact path="/polls/:id/edit" component={EditPoll} />
+        <Route exact path="/signup" component={Signup} />
       </Switch>
     </Router>
   );
