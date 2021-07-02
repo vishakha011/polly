@@ -3,7 +3,6 @@ import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 import { registerIntercepts, setAuthHeaders } from "apis/axios";
 import { ToastContainer } from "react-toastify";
-import { either, isNil, isEmpty } from "ramda";
 import { initializeLogger } from "common/logger";
 
 import NavBar from "components/NavBar";

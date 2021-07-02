@@ -9,16 +9,18 @@ import PageLoader from "components/PageLoader";
 
 const EditTask = ({ history }) => {
   const [title, setTitle] = useState("");
+  const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(true);
   const { id } = useParams();
 
   const handleSubmit = async event => {
-    event.preventDefault();
+    // event.preventDefault();
     try {
-      await pollsApi.update({
-        id,
-        payload: { poll: { title, user_id: userId } },
+      event.preventDefault();
+      setLoading(true);
+      await pollsApi.update(id, {
+        poll: { title, options_attributes: options },
       });
       setLoading(false);
       Toastr.success("Successfully updated poll.");
@@ -33,6 +35,7 @@ const EditTask = ({ history }) => {
     try {
       const response = await pollsApi.show(id);
       setTitle(response.data.poll.title);
+      setOptions(response.data.poll.options);
     } catch (error) {
       logger.error(error);
     } finally {
@@ -58,6 +61,8 @@ const EditTask = ({ history }) => {
         type="update"
         title={title}
         setTitle={setTitle}
+        options={options}
+        setOptions={setOptions}
         loading={loading}
         handleSubmit={handleSubmit}
       />

@@ -14,7 +14,7 @@ const Login = () => {
     event.preventDefault();
     try {
       const response = await authApi.login({ login: { email, password } });
-      logger.info(response);
+      // logger.info(response);
       setToLocalStorage({
         authToken: response.data.auth_token,
         email,

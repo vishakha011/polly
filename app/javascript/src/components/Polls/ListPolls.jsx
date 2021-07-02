@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "components/Button";
 
-const ListPolls = ({ data, showPoll, updatePoll, destroyPoll }) => {
+const ListPolls = ({ data, isLoggedIn, showPoll, updatePoll, destroyPoll }) => {
   return (
     <>
       <div className="table w-full">
@@ -14,20 +14,22 @@ const ListPolls = ({ data, showPoll, updatePoll, destroyPoll }) => {
               >
                 {poll.title}
               </div>
-              <div>
-                <div className="table-cell">
-                  <Button
-                    buttonText="Edit"
-                    onClick={() => updatePoll(poll.id)}
-                  />
+              {isLoggedIn && (
+                <div>
+                  <div className="table-cell">
+                    <Button
+                      buttonText="Edit"
+                      onClick={() => updatePoll(poll.id)}
+                    />
+                  </div>
+                  <div className="table-cell pl-2">
+                    <Button
+                      buttonText="Delete"
+                      onClick={() => destroyPoll(poll.id)}
+                    />
+                  </div>
                 </div>
-                <div className="table-cell pl-2">
-                  <Button
-                    buttonText="Delete"
-                    onClick={() => destroyPoll(poll.id)}
-                  />
-                </div>
-              </div>
+              )}
             </div>
           ))}
         </div>

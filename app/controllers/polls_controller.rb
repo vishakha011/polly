@@ -3,7 +3,7 @@ class PollsController < ApplicationController
   before_action :load_poll, only: %i[show update destroy]
 
   def index
-    polls = Poll.all
+    polls = Poll.all.order('created_at DESC')
     render status: :ok, json: { polls: polls }
   end
 
@@ -19,7 +19,13 @@ class PollsController < ApplicationController
   end
 
   def show
-    render status: :ok, json: { poll: @poll }
+    # authorize @poll
+    render status: :ok, json: { poll: @poll.as_json(include: {
+      options: {
+        only: [:option, :id, :vote]
+      }
+    }) 
+  }
   end
 
   def update
@@ -44,7 +50,7 @@ class PollsController < ApplicationController
   private
 
     def poll_params
-      params.require(:poll).permit(:title, :user_id)
+      params.require(:poll).permit(:title, :options_attributes => [:id, :option, :vote]).merge(user_id: @current_user.id)
     end
 
     def load_poll

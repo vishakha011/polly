@@ -9,6 +9,7 @@ const Button = ({
   path = "",
   iconClass,
   loading,
+  result = false,
 }) => {
   if (type === "link") {
     return (

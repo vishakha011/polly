@@ -12,11 +12,21 @@ const PollForm = ({
   loading,
   handleSubmit,
 }) => {
-  const handleSetOptions = (event, index) => {
-    const data = [...options];
-    data[index].option = event.target.value;
+  // const handleSetOptions = (event, index) => {
+  //   event.preventDefault();
+  //   const data = [...options];
+  //   data[index].option = event.target.value;
 
-    setOptions(data);
+  //   setOptions(data);
+  // };
+
+  const handleSetOptions = (e, idx) => {
+    e.preventDefault();
+    setOptions(preState => {
+      const curState = [...preState];
+      curState[idx].option = e.target.value;
+      return curState;
+    });
   };
 
   return (

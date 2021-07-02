@@ -78,6 +78,7 @@ const Dashboard = ({ history }) => {
               showPoll={showPoll}
               updatePoll={updatePoll}
               destroyPoll={destroyPoll}
+              isLoggedIn={isLoggedIn}
             />
           </div>
         </div>
@@ -98,6 +99,7 @@ const Dashboard = ({ history }) => {
                 buttonText="Create a poll"
                 iconClass="ri-add-line"
                 loading={loading}
+                isLoggedIn={isLoggedIn}
               />
             )}
           </div>

@@ -1,5 +1,5 @@
 class PollPolicy
-  attr_reader :user, poll
+  attr_reader :user, :poll
 
   def initialize(user, poll)
     @user = user
