@@ -9,10 +9,6 @@ import { getFromLocalStorage, setToLocalStorage } from "helpers/storage";
 
 const NavBar = () => {
   const userFirstName = getFromLocalStorage("authUserFirstName");
-  logger.info(userFirstName);
-  // logger.info(
-  //   !either(isNil, isEmpty)(userFirstName) && userFirstName !== "null"
-  // );
 
   const handleLogout = async () => {
     try {

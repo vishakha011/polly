@@ -17,12 +17,10 @@ const Dashboard = ({ history }) => {
     !either(isNil, isEmpty)(authToken) &&
     authToken !== "null" &&
     authUserFirstName !== "undefined";
-  logger.info(`logged in : ${isLoggedIn}`);
 
   const fetchPolls = async () => {
     try {
       const response = await pollsApi.list();
-      // logger.info(response);
       setPolls(response.data.polls);
       setLoading(false);
     } catch (error) {
@@ -83,6 +81,7 @@ const Dashboard = ({ history }) => {
               updatePoll={updatePoll}
               destroyPoll={destroyPoll}
               isLoggedIn={isLoggedIn}
+              history={history}
             />
           </div>
         </div>

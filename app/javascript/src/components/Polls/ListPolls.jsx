@@ -1,7 +1,14 @@
 import React from "react";
 import Button from "components/Button";
 
-const ListPolls = ({ data, isLoggedIn, showPoll, updatePoll, destroyPoll }) => {
+const ListPolls = ({
+  data,
+  isLoggedIn,
+  showPoll,
+  updatePoll,
+  destroyPoll,
+  history,
+}) => {
   return (
     <>
       <div className="table w-full">
@@ -10,7 +17,9 @@ const ListPolls = ({ data, isLoggedIn, showPoll, updatePoll, destroyPoll }) => {
             <div className="table-row py-2" key={poll.id}>
               <div
                 className="table-cell text-lg font-medium cursor-pointer hover:text-indigo-500"
-                onClick={() => isLoggedIn && showPoll(poll.id)}
+                onClick={() => {
+                  isLoggedIn ? showPoll(poll.id) : history.push("/login");
+                }}
               >
                 {poll.title}
               </div>
