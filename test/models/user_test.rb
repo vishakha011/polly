@@ -12,7 +12,7 @@ class UserTest < ActiveSupport::TestCase
   def test_user_should_be_not_be_valid_without_first_name
     @user.first_name = ''
     assert_not @user.valid?
-    assert_equal ["Name can't be blank"], @user.errors.full_messages
+    assert_equal ["First Name can't be blank"], @user.errors.full_messages
   end
 
   def test_first_name_should_be_of_valid_length

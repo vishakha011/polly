@@ -11,16 +11,16 @@ class OptionTest < ActiveSupport::TestCase
 
     Option.delete_all
 
-    @option = Option.new(content: 'This is a test poll', poll: @poll)
+    @option = Option.new(option: 'This is a test poll', poll: @poll)
   end
 
   def test_option_should_be_invalid_without_content
-    @option.content = ''
+    @option.option = ''
     assert @option.invalid?
   end
   
   def test_option_content_should_not_exceed_maximum_length
-    @option.content = 'a' * 200
+    @option.option = 'a' * 200
     assert @option.invalid?
   end
 
@@ -31,7 +31,7 @@ class OptionTest < ActiveSupport::TestCase
   end
 
   def test_option_should_not_be_valid_without_poll
-    @option.poll = nil
+    @option.poll_id = nil
     assert @option.invalid?
   end
 end
