@@ -19,10 +19,6 @@ class OptionTest < ActiveSupport::TestCase
     assert @option.invalid?
   end
   
-  def test_option_content_should_not_exceed_maximum_length
-    @option.option = 'a' * 200
-    assert @option.invalid?
-  end
 
   def test_valid_option_should_be_saved
     assert_difference 'Option.count' do
@@ -30,8 +26,5 @@ class OptionTest < ActiveSupport::TestCase
     end
   end
 
-  def test_option_should_not_be_valid_without_poll
-    @option.poll_id = nil
-    assert @option.invalid?
-  end
+
 end
