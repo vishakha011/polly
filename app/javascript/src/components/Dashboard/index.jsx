@@ -12,8 +12,12 @@ const Dashboard = ({ history }) => {
   const [polls, setPolls] = useState([]);
   const [loading, setLoading] = useState(true);
   const authToken = getFromLocalStorage("authToken");
-  const isLoggedIn = !either(isNil, isEmpty)(authToken) && authToken !== "null";
-  logger.info(isLoggedIn);
+  const authUserFirstName = getFromLocalStorage("authUserFirstName");
+  const isLoggedIn =
+    !either(isNil, isEmpty)(authToken) &&
+    authToken !== "null" &&
+    authUserFirstName !== "undefined";
+  logger.info(`logged in : ${isLoggedIn}`);
 
   const fetchPolls = async () => {
     try {

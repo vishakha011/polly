@@ -10,7 +10,7 @@ const ListPolls = ({ data, isLoggedIn, showPoll, updatePoll, destroyPoll }) => {
             <div className="table-row py-2" key={poll.id}>
               <div
                 className="table-cell text-lg font-medium cursor-pointer hover:text-indigo-500"
-                onClick={() => showPoll(poll.id)}
+                onClick={() => isLoggedIn && showPoll(poll.id)}
               >
                 {poll.title}
               </div>

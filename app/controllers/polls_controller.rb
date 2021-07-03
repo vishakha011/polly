@@ -19,7 +19,7 @@ class PollsController < ApplicationController
   end
 
   def show
-    # authorize @poll
+    authorize @poll
     render status: :ok, json: { poll: @poll.as_json(include: {
       options: {
         only: [:option, :id, :vote]

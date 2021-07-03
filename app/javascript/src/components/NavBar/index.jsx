@@ -10,9 +10,9 @@ import { getFromLocalStorage, setToLocalStorage } from "helpers/storage";
 const NavBar = () => {
   const userFirstName = getFromLocalStorage("authUserFirstName");
   logger.info(userFirstName);
-  logger.info(
-    !either(isNil, isEmpty)(userFirstName) && userFirstName !== "null"
-  );
+  // logger.info(
+  //   !either(isNil, isEmpty)(userFirstName) && userFirstName !== "null"
+  // );
 
   const handleLogout = async () => {
     try {
@@ -40,7 +40,8 @@ const NavBar = () => {
             </div>
             <div>
               {!either(isNil, isEmpty)(userFirstName) &&
-              userFirstName !== "null" ? (
+              userFirstName !== "null" &&
+              userFirstName !== "undefined" ? (
                   <>
                     <span
                       className="inline-flex items-center px-1 mr-3 font-semibold text-lg leading-5"

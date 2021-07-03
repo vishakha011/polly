@@ -27,6 +27,17 @@ const Button = ({
     );
   }
 
+  if (result) {
+    return (
+      <div>
+        <p className="text-center text-base text-indigo-500">
+          Thanks for voting!
+        </p>
+        <p className="text-center text-base">🎉</p>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-6">
       <button
